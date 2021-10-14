@@ -17,6 +17,23 @@ def addNumber():
     num = int(input("Input a number"))
     theList.append(num)
 
+def addNumberAtPos(num, pos):
+    if pos <= len(theList):
+        theList.insert(pos,num)
+        return True
+    else:
+        return False
+def getLastElement():
+    if len(theList) > 0:
+        return theList.pop()
+    
+    return False
+
+def deleteAtPos(pos):
+    if pos <= len(theList):
+        return theList.pop(pos)
+    return False
+
 while True:
     option = showMenu()
     if option == 1:
@@ -24,19 +41,25 @@ while True:
     elif option == 2:
         num = int(input("Input a number"))
         pos = int(input("Input the position"))
-        if pos <= len(theList):
-            theList.insert(pos,num)
+        if addNumberAtPos(num,pos):
+            print("Number added correctly!!")
         else:
             print("The index is out!!!")
     elif option == 3:
         print("The length of the list is ",len(theList))
     elif option == 4:
-        if len(theList) > 0:
-            print("The last element is ",theList.pop())    
+        num = getLastElement()
+        if num == False:
+            print("The list is empty!!!")
+        else:
+            print("The last element is ",num)    
     elif option == 5:
         pos = int(input("Input the position"))
-        if pos <= len(theList):
-            print("Deleting the element ",theList.pop(pos))
+        num = deleteAtPos(pos)
+        if num == False:
+            print("The position does not exist!!!")
+        else:
+            print("Deleting the element ",num)
     elif option == 6:
         num = int(input("Input a number"))
         print("The ocurrences of the number ",num, " is ", theList.count())
